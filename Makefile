@@ -7,7 +7,13 @@ export GOPATH
 
 all: build
 
-build: build-darwin build-linux build-windows
+clean:
+	rm -rf src bin
+
+build: get build-darwin build-linux build-windows
+
+get:
+	go get -d -v
 
 build-darwin:
 	CGO_ENABLED=0 GOOS=darwin GOARCH=$(TARGET_ARCH) go build -ldflags "$(LDFLAGS)" -o bin/$(TARGET_BIN)_darwin-amd64 $(SOURCE_MAIN)
