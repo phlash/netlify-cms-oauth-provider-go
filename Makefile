@@ -26,3 +26,6 @@ build-windows:
 
 start:
 	go run $(SOURCE_MAIN)
+
+test:
+	curl -X POST http://localhost:3000/callback/deploy --header "X-Hub-Signature: sha1=blank" --header "X-GitHub-Event: test" --header "X-GitHub-Delivery: uuid" -d "{ json: body, kinda: true }"
